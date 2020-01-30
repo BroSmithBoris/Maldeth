@@ -5,16 +5,18 @@ using UnityEngine.UI;
 
 public class HexMap : MonoBehaviour
 {
-    public Dropdown dropdown;
-    int width = 8;
-    int height = 8;
+    public Dropdown DropDownSizeMap;
+    public Dropdown DropDownLands;
+    int width;
+    int height;
     public HexCell hex;
     public GameObject map;
-    public HexCell redhex;
+    public HexCell[] cells;
+
 
     public void ChangeValueMap()
     {
-        switch (dropdown.value)
+        switch (DropDownSizeMap.value)
         {
             case 0:
                 height = 8;
@@ -101,7 +103,7 @@ public class HexMap : MonoBehaviour
             switch (hit.collider.tag)
             {
                 case "Land":
-                    HexCell cell = Instantiate(redhex);
+                    HexCell cell = Instantiate(cells[DropDownLands.value]);
                     cell.transform.SetParent(transform, false);
                     cell.transform.localPosition = hit.transform.position;
                     Destroy(hit.transform.parent.gameObject);
