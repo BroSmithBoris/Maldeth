@@ -1946,8 +1946,7 @@ MonoBehaviour:
   dropdown: {fileID: 600258415}
   hex: {fileID: 7275632257001784002, guid: b23a4b3b34cb68f409a742aec56e8762, type: 3}
   map: {fileID: 1792808540}
-  defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  touchedColor: {r: 1, g: 0, b: 1, a: 1}
+  redhex: {fileID: 8796362993016370732, guid: 107745380f9e52c43a25946c1bd3ba83, type: 3}
 --- !u!4 &1792808542
 Transform:
   m_ObjectHideFlags: 0

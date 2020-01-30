@@ -10,8 +10,7 @@ public class HexMap : MonoBehaviour
     int height = 8;
     public HexCell hex;
     public GameObject map;
-    public Color defaultColor = Color.white;
-    public Color touchedColor = Color.magenta;
+    public HexCell redhex;
 
     public void ChangeValueMap()
     {
@@ -78,7 +77,6 @@ public class HexMap : MonoBehaviour
         HexCell cell = Instantiate(hex);
         cell.transform.SetParent(transform, false);
         cell.transform.localPosition = position;
-        cell.color = defaultColor;
     }
 
     public void Clear()
@@ -103,7 +101,10 @@ public class HexMap : MonoBehaviour
             switch (hit.collider.tag)
             {
                 case "Land":
-                    Destroy(hit.collider.gameObject);
+                    HexCell cell = Instantiate(redhex);
+                    cell.transform.SetParent(transform, false);
+                    cell.transform.localPosition = hit.transform.localPosition;
+                    Destroy(hit.collider.gameObject.GetComponentInParent<HexCell>());
                     break;
 
                 default:
