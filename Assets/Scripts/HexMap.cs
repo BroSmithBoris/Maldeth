@@ -103,8 +103,8 @@ public class HexMap : MonoBehaviour
                 case "Land":
                     HexCell cell = Instantiate(redhex);
                     cell.transform.SetParent(transform, false);
-                    cell.transform.localPosition = hit.transform.localPosition;
-                    Destroy(hit.collider.gameObject.GetComponentInParent<HexCell>());
+                    cell.transform.localPosition = hit.transform.position;
+                    Destroy(hit.transform.parent.gameObject);
                     break;
 
                 default:
