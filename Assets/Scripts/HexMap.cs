@@ -5,47 +5,44 @@ using UnityEngine.UI;
 
 public class HexMap : MonoBehaviour
 {
-    public Dropdown DropDownSizeMap;
-    public Dropdown DropDownLands;
-    int width = 8;
-    int height = 8;
+    public Dropdown DropDownSizeMap, DropDownLands, DropDownBuilds;
+    byte width = 8, height = 8, brush;
     public HexCell hex;
     public GameObject map;
-    public HexCell[] cells;
+    public HexCell[] hexs, builds;
 
+    void Update()
+    {
+        if (Input.GetMouseButton(0))
+            HandleInput();
+    }
 
     public void ChangeValueMap()
     {
         switch (DropDownSizeMap.value)
         {
             case 0:
-                height = 8;
-                width = 8;
+                height = width = 8;
                 break;
 
             case 1:
-                height = 16;
-                width = 16;
+                height = width = 16;
                 break;
 
             case 2:
-                height = 20;
-                width = 20;
+                height = width = 20;
                 break;
 
             case 3:
-                height = 24;
-                width = 24;
+                height = width = 24;
                 break;
 
             case 4:
-                height = 32;
-                width = 32;
+                height = width = 32;
                 break;
 
             case 5:
-                height = 64;
-                width = 64;
+                height = width = 64;
                 break;
         }
     }
@@ -89,30 +86,46 @@ public class HexMap : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        if (Input.GetMouseButton(0))
-            HandleInput();
-    }
-
     void HandleInput()
     {
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
         {
-            switch (hit.collider.tag)
+            switch (brush)
             {
-                case "Land":
-                    HexCell cell = Instantiate(cells[DropDownLands.value]);
-                    cell.transform.SetParent(transform, false);
-                    cell.transform.localPosition = hit.transform.position;
+                case 0:
+                    HexCell build = Instantiate(builds[DropDownBuilds.value]);
+                    build.transform.SetParent(transform, false);
+                    build.transform.localPosition = hit.transform.position;
                     Destroy(hit.transform.parent.gameObject);
                     break;
 
-                default:
+                case 1:
                     break;
+
+                case 2:
+                    HexCell cell = Instantiate(hexs[DropDownLands.value]);
+                    cell.transform.SetParent(transform, false);
+                    cell.transform.localPosition = hit.transform.position;
+                    Destroy(hit.transform.parent.gameObject);
+                    break;               
             }
         }
+    }
+
+    public void BuildBrush()
+    {
+        brush = 0;
+    }
+
+    public void UnitsBrush()
+    {
+        brush = 1;
+    }
+
+    public void LandsBrush()
+    {
+        brush = 2;
     }
 }
 

@@ -504,7 +504,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &120611223
 RectTransform:
   m_ObjectHideFlags: 0
@@ -834,6 +834,17 @@ MonoBehaviour:
       - m_Target: {fileID: 1928385267}
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1792808541}
+        m_MethodName: LandsBrush
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3455,6 +3466,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1792808541}
+        m_MethodName: UnitsBrush
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1206329208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3985,7 +4007,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1373779888
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4998,12 +5020,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DropDownSizeMap: {fileID: 600258415}
   DropDownLands: {fileID: 106555011}
+  DropDownBuilds: {fileID: 1928385269}
   hex: {fileID: 6383240650012873743, guid: bec73724a0725984db7df725624f7668, type: 3}
   map: {fileID: 1792808540}
-  cells:
+  hexs:
   - {fileID: 1373050976976506249, guid: 88e6dd55955aa2b49b7f2ee2edfedac8, type: 3}
   - {fileID: 4315927466727337934, guid: dce69311b7f70614c855be76c81bd197, type: 3}
   - {fileID: 6383240650012873743, guid: bec73724a0725984db7df725624f7668, type: 3}
+  builds:
+  - {fileID: 8671002488771014528, guid: 45e0f0b10797a7a45a8877f311bc7d79, type: 3}
 --- !u!4 &1792808542
 Transform:
   m_ObjectHideFlags: 0
@@ -5398,6 +5423,17 @@ MonoBehaviour:
       - m_Target: {fileID: 1357214070}
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1792808541}
+        m_MethodName: BuildBrush
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5803,11 +5839,11 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Option A
+    - m_Text: Main Building
       m_Image: {fileID: 0}
-    - m_Text: Option B
+    - m_Text: Scientific center
       m_Image: {fileID: 0}
-    - m_Text: Option C
+    - m_Text: Production uf units
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
