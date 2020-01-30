@@ -565,6 +565,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 301700032}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &250951353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1933,8 +1944,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropdown: {fileID: 600258415}
-  hex: {fileID: 8147933800390074968, guid: b23a4b3b34cb68f409a742aec56e8762, type: 3}
+  hex: {fileID: 7275632257001784002, guid: b23a4b3b34cb68f409a742aec56e8762, type: 3}
   map: {fileID: 1792808540}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  touchedColor: {r: 1, g: 0, b: 1, a: 1}
 --- !u!4 &1792808542
 Transform:
   m_ObjectHideFlags: 0

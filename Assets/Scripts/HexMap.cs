@@ -10,6 +10,8 @@ public class HexMap : MonoBehaviour
     int height = 8;
     public HexCell hex;
     public GameObject map;
+    public Color defaultColor = Color.white;
+    public Color touchedColor = Color.magenta;
 
     public void ChangeValueMap()
     {
@@ -76,6 +78,7 @@ public class HexMap : MonoBehaviour
         HexCell cell = Instantiate(hex);
         cell.transform.SetParent(transform, false);
         cell.transform.localPosition = position;
+        cell.color = defaultColor;
     }
 
     public void Clear()
@@ -85,4 +88,30 @@ public class HexMap : MonoBehaviour
             Destroy(e.gameObject);
         }
     }
+
+    void Update()
+    {
+        if (Input.GetMouseButton(0))
+            HandleInput();
+    }
+
+    void HandleInput()
+    {
+        Ray inputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(inputRay, out hit))
+        {
+            switch (hit.collider.tag)
+            {
+                case "Land":
+                    Destroy(hit.collider.gameObject);
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    }
 }
+
+    

@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3776816196382495914}
-  - component: {fileID: 8147933800390074968}
+  - component: {fileID: 7275632257001784002}
   m_Layer: 0
   m_Name: HexPrefab
-  m_TagString: Untagged
+  m_TagString: Land
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8147933800390074968
+--- !u!114 &7275632257001784002
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c02e3d51376f2534d8c3d75c8933f8d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: {r: 1, g: 1, b: 1, a: 0}
 --- !u!1 &1874782114726942988
 GameObject:
   m_ObjectHideFlags: 0
@@ -55,6 +56,7 @@ GameObject:
   - component: {fileID: 4345021961263514734}
   - component: {fileID: 3615323336068143006}
   - component: {fileID: 2620295354672697817}
+  - component: {fileID: 5651547025028852458}
   m_Layer: 0
   m_Name: hex
   m_TagString: Untagged
@@ -123,3 +125,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &5651547025028852458
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874782114726942988}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4866372484537245367, guid: e33ac949a2e34cc46850f1c6fdf34f39, type: 3}
