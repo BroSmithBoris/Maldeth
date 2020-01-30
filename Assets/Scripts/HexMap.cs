@@ -7,8 +7,8 @@ public class HexMap : MonoBehaviour
 {
     public Dropdown DropDownSizeMap;
     public Dropdown DropDownLands;
-    int width;
-    int height;
+    int width = 8;
+    int height = 8;
     public HexCell hex;
     public GameObject map;
     public HexCell[] cells;
