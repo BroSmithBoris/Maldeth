@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class HexMap : MonoBehaviour
 {
     public Dropdown dropdown;
-    int width;
-    int height;
+    int width = 8;
+    int height = 8;
     public HexCell hex;
     public GameObject map;
 
@@ -16,34 +16,31 @@ public class HexMap : MonoBehaviour
         switch (dropdown.value)
         {
             case 0:
-                break;
-
-            case 1:
                 height = 8;
                 width = 8;
                 break;
 
-            case 2:
+            case 1:
                 height = 16;
                 width = 16;
                 break;
 
-            case 3:
+            case 2:
                 height = 20;
                 width = 20;
                 break;
 
-            case 4:
+            case 3:
                 height = 24;
                 width = 24;
                 break;
 
-            case 5:
+            case 4:
                 height = 32;
                 width = 32;
                 break;
 
-            case 6:
+            case 5:
                 height = 64;
                 width = 64;
                 break;
