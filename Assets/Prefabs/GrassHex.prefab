@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 2871942816871470692}
   - component: {fileID: 6383240650012873743}
   m_Layer: 0
-  m_Name: GreenHex
+  m_Name: GrassHex
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 public class HexMap : MonoBehaviour
 {
-    public Dropdown DropDownSizeMap, DropDownLands, DropDownBuilds;
-    byte width = 8, height = 8, brush;
-    public HexCell hex;
-    public GameObject map;
-    public HexCell[] hexs, builds;
+    public Dropdown DropDownSizeMap, DropDownLands, DropDownBuilds; //Списки размера карты, возможных поверхностей, возможных зданий
+    byte width = 8, height = 8, brush = 3; //размеры карты и переменная для выбора возможной кисти
+    public HexCell hex; //Префаб основного гекса
+    public GameObject map; //Пустой объект внутри которого создаются все элементы карты
+    public HexCell[] hexs, builds; //массивы возможных поверхностней, возможных зданий
+    public Texture2D CursorTexture; //текстура курсора
 
     void Update()
     {
@@ -17,7 +18,7 @@ public class HexMap : MonoBehaviour
             HandleInput();
     }
 
-    public void ChangeValueMap()
+    public void ChangeValueMap() //Изменение размеров для создания новой карты
     {
         switch (DropDownSizeMap.value)
         {
@@ -47,7 +48,7 @@ public class HexMap : MonoBehaviour
         }
     }
 
-    public void CreateMap()
+    public void CreateMap() //Создание начальной карты определённых размеров
     {
         for (int z = 0; z < height; z++)
             for (int x = 0; x < width; x++)
@@ -56,7 +57,7 @@ public class HexMap : MonoBehaviour
             }
     }
 
-    void CreateCell(int x, int z)
+    void CreateCell(int x, int z) //Создание начального гекса в определённых координатах
     {
         Vector3 position;
 
@@ -78,7 +79,7 @@ public class HexMap : MonoBehaviour
         cell.transform.localPosition = position;
     }
 
-    public void Clear()
+    public void Clear() //Удаление карты
     {
         foreach (var e in map.GetComponentsInChildren<HexCell>())
         {
@@ -86,33 +87,36 @@ public class HexMap : MonoBehaviour
         }
     }
 
-    void HandleInput()
+    void HandleInput() //Рисование кисточкой на карте
     {
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
         {
             switch (brush)
             {
-                case 0:
+                case 0: //Здания
                     HexCell build = Instantiate(builds[DropDownBuilds.value]);
                     build.transform.SetParent(transform, false);
                     build.transform.localPosition = hit.transform.position;
                     Destroy(hit.transform.parent.gameObject);
                     break;
 
-                case 1:
+                case 1: //Юниты
                     break;
 
-                case 2:
-                    HexCell cell = Instantiate(hexs[DropDownLands.value]);
-                    cell.transform.SetParent(transform, false);
-                    cell.transform.localPosition = hit.transform.position;
+                case 2: //Поверхность
+                    HexCell land = Instantiate(hexs[DropDownLands.value]);
+                    land.transform.SetParent(transform, false);
+                    land.transform.localPosition = hit.transform.position;
                     Destroy(hit.transform.parent.gameObject);
-                    break;               
+                    break;
+                
+                case 3:
+                    break;
             }
         }
     }
 
+    /* Выбор кисти рисования */
     public void BuildBrush()
     {
         brush = 0;

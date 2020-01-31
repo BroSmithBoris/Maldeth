@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3776816196382495914}
   - component: {fileID: 7275632257001784002}
   m_Layer: 0
-  m_Name: HexPrefab
+  m_Name: DefaultHex
   m_TagString: Land
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c02e3d51376f2534d8c3d75c8933f8d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 1, g: 1, b: 1, a: 0}
 --- !u!1 &1874782114726942988
 GameObject:
   m_ObjectHideFlags: 0
