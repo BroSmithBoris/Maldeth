@@ -9,8 +9,10 @@ public class HexMap : MonoBehaviour
     byte width = 8, height = 8, brush = 3; //размеры карты и переменная для выбора возможной кисти
     public HexCell hex; //Префаб основного гекса
     public GameObject map; //Пустой объект внутри которого создаются все элементы карты
-    public HexCell[] hexs, builds; //массивы возможных поверхностней, возможных зданий
-    public Texture2D CursorTexture; //текстура курсора
+    public HexCell[] lands, builds; //массивы возможных поверхностней, возможных зданий
+    public GameObject LoadMap; //Загрузка данной карты
+
+    HexCell[] AllHexs; //Содержит текущую карту 
 
     void Update()
     {
@@ -50,14 +52,15 @@ public class HexMap : MonoBehaviour
 
     public void CreateMap() //Создание начальной карты определённых размеров
     {
-        for (int z = 0; z < height; z++)
+        AllHexs = new HexCell[width * height];
+        for (int z = 0, i = 0; z < height; z++)
             for (int x = 0; x < width; x++)
             {
-                CreateCell(x, z);
+                CreateCell(x, z, i++);
             }
     }
 
-    void CreateCell(int x, int z) //Создание начального гекса в определённых координатах
+    void CreateCell(int x, int z, int i) //Создание начального гекса в определённых координатах
     {
         Vector3 position;
 
@@ -75,8 +78,11 @@ public class HexMap : MonoBehaviour
         }
 
         HexCell cell = Instantiate(hex);
+        cell.x = x;
+        cell.z = z;
         cell.transform.SetParent(transform, false);
         cell.transform.localPosition = position;
+        AllHexs[i] = cell;
     }
 
     public void Clear() //Удаление карты
@@ -95,8 +101,11 @@ public class HexMap : MonoBehaviour
             {
                 case 0: //Здания
                     HexCell build = Instantiate(builds[DropDownBuilds.value]);
+                    build.x = hit.transform.position.x;
+                    build.z = hit.transform.position.z;
                     build.transform.SetParent(transform, false);
                     build.transform.localPosition = hit.transform.position;
+                    ReplaceHex(build, hit.transform.position);
                     Destroy(hit.transform.parent.gameObject);
                     break;
 
@@ -104,13 +113,16 @@ public class HexMap : MonoBehaviour
                     break;
 
                 case 2: //Поверхность
-                    HexCell land = Instantiate(hexs[DropDownLands.value]);
+                    HexCell land = Instantiate(lands[DropDownLands.value]);
+                    land.x = hit.transform.position.x;
+                    land.z = hit.transform.position.z;
                     land.transform.SetParent(transform, false);
                     land.transform.localPosition = hit.transform.position;
+                    ReplaceHex(land, hit.transform.position);
                     Destroy(hit.transform.parent.gameObject);
                     break;
                 
-                case 3:
+                case 3: //Дефолтная пустая кисть
                     break;
             }
         }
@@ -130,6 +142,24 @@ public class HexMap : MonoBehaviour
     public void LandsBrush()
     {
         brush = 2;
+    }
+
+    public void MapLoading() //Загрузка карты
+    {
+        var loadmap = Instantiate(LoadMap);
+        loadmap.transform.position = Vector3.zero;
+    }
+
+    public void ReplaceHex(HexCell hex, Vector3 vector) //Замещает гекс в массиве при рисовании нового кистью
+    {
+        for (int i = 0; i < AllHexs.Length; i++)
+        {
+            if (AllHexs[i].x == vector.x && AllHexs[i].z == vector.z)
+            {
+                AllHexs[i] = hex;
+                return;
+            }
+        }
     }
 }
 
