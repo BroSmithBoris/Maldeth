@@ -6,13 +6,12 @@ using UnityEngine.UI;
 public class HexMap : MonoBehaviour
 {
     public Dropdown DropDownSizeMap, DropDownLands, DropDownBuilds; //Списки размера карты, возможных поверхностей, возможных зданий
-    byte width = 8, height = 8, brush = 3; //размеры карты и переменная для выбора возможной кисти
-    public HexCell hex; //Префаб основного гекса
+    byte width = 8, height = 8, brush = 2; //размеры карты и переменная для выбора возможной кисти
+    public HexCell startHex; //Префаб начального гекса
     public GameObject map; //Пустой объект внутри которого создаются все элементы карты
     public HexCell[] lands, builds; //массивы возможных поверхностней, возможных зданий
     public GameObject LoadMap; //Загрузка данной карты
-
-    HexCell[] AllHexs; //Содержит текущую карту 
+    [HideInInspector]public HexCell[] AllHexs; //массив, содержащий всю карту
 
     void Update()
     {
@@ -77,7 +76,7 @@ public class HexMap : MonoBehaviour
             position.z = z * 20f + 10f;
         }
 
-        HexCell cell = Instantiate(hex);
+        HexCell cell = Instantiate(startHex);
         cell.x = position.x;
         cell.z = position.z;
         cell.transform.SetParent(transform, false);
@@ -109,10 +108,7 @@ public class HexMap : MonoBehaviour
                     Destroy(hit.transform.parent.gameObject);
                     break;
 
-                case 1: //Юниты
-                    break;
-
-                case 2: //Поверхность
+                case 1: //Поверхность
                     HexCell land = Instantiate(lands[DropDownLands.value]);
                     land.x = hit.transform.position.x;
                     land.z = hit.transform.position.z;
@@ -122,7 +118,7 @@ public class HexMap : MonoBehaviour
                     Destroy(hit.transform.parent.gameObject);
                     break;
                 
-                case 3: //Дефолтная пустая кисть
+                case 2: //Дефолтная пустая кисть
                     break;
             }
         }
@@ -134,20 +130,19 @@ public class HexMap : MonoBehaviour
         brush = 0;
     }
 
-    public void UnitsBrush()
-    {
-        brush = 1;
-    }
-
     public void LandsBrush()
     {
-        brush = 2;
+        brush = 1;
     }
 
     public void MapLoading() //Загрузка карты
     {
         var loadmap = Instantiate(LoadMap);
         loadmap.transform.position = Vector3.zero;
+        var loadDropDownBuilds = GameObject.FindGameObjectWithTag("DropDownBuilds");
+        var loadDropDownLands = GameObject.FindGameObjectWithTag("DropDownLands");
+        DropDownBuilds = loadDropDownBuilds.GetComponentInChildren<Dropdown>();
+        DropDownLands = loadDropDownLands.GetComponentInChildren<Dropdown>();
     }
 
     public void ReplaceHex(HexCell hex, Vector3 vector) //Замещает гекс в массиве при рисовании нового кистью
