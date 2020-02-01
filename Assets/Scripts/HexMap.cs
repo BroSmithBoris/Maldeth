@@ -78,8 +78,8 @@ public class HexMap : MonoBehaviour
         }
 
         HexCell cell = Instantiate(hex);
-        cell.x = x;
-        cell.z = z;
+        cell.x = position.x;
+        cell.z = position.z;
         cell.transform.SetParent(transform, false);
         cell.transform.localPosition = position;
         AllHexs[i] = cell;
