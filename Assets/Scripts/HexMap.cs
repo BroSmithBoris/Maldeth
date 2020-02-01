@@ -10,8 +10,10 @@ public class HexMap : MonoBehaviour
     public HexCell startHex; //Префаб начального гекса
     public GameObject map; //Пустой объект внутри которого создаются все элементы карты
     public HexCell[] lands, builds; //массивы возможных поверхностней, возможных зданий
-    public GameObject LoadMap; //Загрузка данной карты
+    public GameObject LoadMap; //префаб карты для загрузки
     [HideInInspector]public HexCell[] AllHexs; //массив, содержащий всю карту
+
+    private GameObject loadMap; //объект "загруженная карта"
 
     void Update()
     {
@@ -90,6 +92,8 @@ public class HexMap : MonoBehaviour
         {
             Destroy(e.gameObject);
         }
+
+        Destroy(loadMap);
     }
 
     void HandleInput() //Рисование кисточкой на карте
@@ -137,8 +141,8 @@ public class HexMap : MonoBehaviour
 
     public void MapLoading() //Загрузка карты
     {
-        var loadmap = Instantiate(LoadMap);
-        loadmap.transform.position = Vector3.zero;
+        loadMap = Instantiate(LoadMap);
+        loadMap.transform.position = Vector3.zero;
         var loadDropDownBuilds = GameObject.FindGameObjectWithTag("DropDownBuilds");
         var loadDropDownLands = GameObject.FindGameObjectWithTag("DropDownLands");
         DropDownBuilds = loadDropDownBuilds.GetComponentInChildren<Dropdown>();
